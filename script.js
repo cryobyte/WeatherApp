@@ -1,5 +1,5 @@
 // gathering api information 
-let  api = {
+const  api = {
     key: "34c39ba493566250fb740c4f3e8fb3b7",
     base: "http://api.openweathermap.org/data/2.5/"
 }
