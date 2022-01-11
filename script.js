@@ -1,5 +1,5 @@
 // gathering api information 
-const  api = {
+let  api = {
     key: "34c39ba493566250fb740c4f3e8fb3b7",
     base: "https://api.openweathermap.org/data/2.5/"
 }
@@ -37,11 +37,17 @@ function displayInfo (weather) {
 function dateCreator (d) {
     let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    
+    // let country= weather.sys.country;
+
     let currentDate = new Date();
     let hours = currentDate.getHours();
     let minutes = currentDate.getMinutes();
-    let PmorAm;
+
+    var diff = d.getTimezoneOffset();
+    currentDate.setMinutes(currentDate.getMinutes() + diff);
+    console.log(currentDate);    
+    
+    let PmorAm, PmorAm_utc;
 
     if(hours > 12){
         PmorAm = "PM";
@@ -52,13 +58,29 @@ function dateCreator (d) {
     if(minutes < 10){
         minutes = '0' + minutes;
     }
-    let time = hours + ":" + minutes;
-    console.log(time);    
 
+    let time = hours + ":" + minutes;
+    let utc_time_hrs = currentDate.getHours();
+    let utc_time_min = currentDate.getMinutes();
+
+    if(utc_time_hrs > 12){
+        PmorAm_utc = "PM";
+        hours-=12;
+    }
+    else 
+        PmorAm_utc = "AM";
+    if(utc_time_min < 10){
+        utc_time_min = '0' + minutes;
+    }
+    let utc_time = currentDate.getHours() + ":" + currentDate.getMinutes();
+
+    console.log(time);    
+    console.log(utc_time);    
+    
     let day = days[d.getDay()];
     let date = d.getDate();
     let month = months[d.getMonth()];
     let year = d.getFullYear();
 
-    return `${day} ${month} ${date} ${year} ${"/"} ${time} ${PmorAm}`;
+    return `${day} ${month} ${date} ${year} ${"/"} ${time} ${PmorAm} ${"EST"} ${"|"} ${utc_time} ${PmorAm_utc} ${"UTC"} `;
 }
