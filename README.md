@@ -12,3 +12,4 @@ API: Open Weather Map API
 * https://openweathermap.org/api
 
 ![image](https://user-images.githubusercontent.com/55255451/149230273-1c21c9e2-3c9e-4817-89ed-267577891965.png)
+![image](https://user-images.githubusercontent.com/55255451/149230345-937260a2-a4c2-4e3e-9af3-e63ad656366b.png)
